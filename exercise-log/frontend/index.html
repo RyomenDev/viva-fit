@@ -1,11 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise Log</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css/form.css">
 </head>
+
 <body>
-    <h1>Welcome to Exercise Log</h1>
+    <header>
+        <h1>Exercise Log</h1>
+    </header>
+
+    <main>
+        <h2>Welcome to the Exercise Log App!</h2>
+        <p>This app helps you track your daily exercises and monitor your progress.</p>
+        <form onsubmit="return validateForm()" id="exercise-form">
+            <div>
+                <label for="exercise-name">Exercise Name:</label>
+                <input type="text" id="exercise-name" name="exercise-name">
+            </div>
+            <div>
+                <label for="sets">Sets:</label>
+                <input type="number" id="sets" name="sets" required>
+            </div>
+            <div>
+                <label for="reps">Reps:</label>
+                <input type="number" id="reps" name="reps" required>
+            </div>
+            <button type="submit">Log Exercise</button>
+        </form>
+
+        <ul id="exercise-list">Here Exercises will be shown</ul>
+    </main>
+
+
+
+    <footer>
+        <p>&copy; 2024 Exercise Log. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let exercises = [];
+
+        function validateForm() {
+            event.preventDefault();
+            const exerciseName = document.getElementById('exercise-name').value;
+            const sets = document.getElementById('sets').value;
+            const reps = document.getElementById('reps').value;
+
+            if (exerciseName === '' || sets === '' || reps === '') {
+                alert('Please fill in all fields.');
+                return false; // Prevent form submission
+            }
+
+            const exerciseDetail = `Exercise: ${exerciseName}, Sets: ${sets}, Reps: ${reps}`;
+            exercises.push(exerciseDetail);
+            displayExerciseList();
+
+            // Clear form fields after adding the exercise
+            document.getElementById('exercise-form').reset();
+        }
+
+        function displayExerciseList() {
+            const exerciseListContainer = document.getElementById('exercise-list');
+
+            // Clear existing list
+            exerciseListContainer.innerHTML = '';
+
+            // Generate list items dynamically
+            exercises.forEach((exercise) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = exercise;
+                exerciseListContainer.appendChild(listItem);
+            });
+        }
+        //  document.getElementById('exercise-form').addEventListener('submit', function (event) {
+        //         event.preventDefault(); // Prevent form from submitting immediately
+        //         const exerciseName = document.getElementById('exercise-name').value;
+        //         const sets = document.getElementById('sets').value;
+        //         const reps = document.getElementById('reps').value;
+
+        //         if (exerciseName === '' || sets === '' || reps === '') {
+        //             alert('Please fill in all fields.');
+        //         } else {
+        //             alert('Form submitted successfully!');
+        //             this.submit();
+        //         }
+        //     });
+
+    </script>
 </body>
+
 </html>
