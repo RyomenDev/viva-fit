@@ -42,56 +42,9 @@
         <p>&copy; 2024 Exercise Log. All rights reserved.</p>
     </footer>
 
-    <script>
-        let exercises = [];
-
-        function validateForm() {
-            event.preventDefault();
-            const exerciseName = document.getElementById('exercise-name').value;
-            const sets = document.getElementById('sets').value;
-            const reps = document.getElementById('reps').value;
-
-            if (exerciseName === '' || sets === '' || reps === '') {
-                alert('Please fill in all fields.');
-                return false; // Prevent form submission
-            }
-
-            const exerciseDetail = `Exercise: ${exerciseName}, Sets: ${sets}, Reps: ${reps}`;
-            exercises.push(exerciseDetail);
-            displayExerciseList();
-
-            // Clear form fields after adding the exercise
-            document.getElementById('exercise-form').reset();
-        }
-
-        function displayExerciseList() {
-            const exerciseListContainer = document.getElementById('exercise-list');
-
-            // Clear existing list
-            exerciseListContainer.innerHTML = '';
-
-            // Generate list items dynamically
-            exercises.forEach((exercise) => {
-                const listItem = document.createElement('li');
-                listItem.textContent = exercise;
-                exerciseListContainer.appendChild(listItem);
-            });
-        }
-        //  document.getElementById('exercise-form').addEventListener('submit', function (event) {
-        //         event.preventDefault(); // Prevent form from submitting immediately
-        //         const exerciseName = document.getElementById('exercise-name').value;
-        //         const sets = document.getElementById('sets').value;
-        //         const reps = document.getElementById('reps').value;
-
-        //         if (exerciseName === '' || sets === '' || reps === '') {
-        //             alert('Please fill in all fields.');
-        //         } else {
-        //             alert('Form submitted successfully!');
-        //             this.submit();
-        //         }
-        //     });
-
-    </script>
+    <!-- <script src="js/index.js"></script> -->
+    <script src="js/sendExercise.js"></script>
+    <script src="js/retrieveExercises.js"></script>
 </body>
 
 </html>
