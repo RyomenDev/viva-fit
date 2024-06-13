@@ -1,4 +1,6 @@
 require("dotenv").config();
+const jwt = require("jsonwebtoken");
+
 const { JWTSECRETKEY } = process.env;
 const jwtSecretKey = JWTSECRETKEY;
 // Authentication middleware
@@ -7,14 +9,19 @@ function authenticate(req, res, next) {
 
   if (token) {
     try {
-      const decoded = jwt.verify(token, JWTSECRETKEY);
-      req.user = decoded;
+      // const decoded = jwt.verify(token, JWTSECRETKEY);
+      // req.user = decoded.userId;
+      const { userId, userEmail } = jwt.verify(token, jwtSecretKey);
+      req.userId = userId;
+        console.log("userId", userId);
+        console.log("userEmail", userEmail);
       next();
     } catch (error) {
+      console.error("Error verifying token:", error.message);
       res.status(401).json({ error: "Invalid token" });
     }
   } else {
-    res.status(401).json({ error: "Missing token" });
+    res.status(401).json({ error: "Unauthorized - Missing token" });
   }
 }
 module.exports = {

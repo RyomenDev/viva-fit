@@ -1,12 +1,13 @@
 const express = require("express");
 require("dotenv").config();
-const database = require("./config/Database");
+// const database = require("./config/Database");
+// const {dbConnect} = require("./config/Database");
 const app = express();
 
 // Use the router for the specified base path
 const cors = require("cors");
 // const router = require("./routes/route");
-const {setupMiddlewares} = require("./middlewares/index");
+const { setupMiddlewares } = require("./middlewares/index");
 
 // Middleware
 app.use(express.json());
@@ -15,7 +16,8 @@ setupMiddlewares(app);
 // Enable CORS
 app.use(cors());
 
-database.connect();
+// database.connect();
+// dbConnect();
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
