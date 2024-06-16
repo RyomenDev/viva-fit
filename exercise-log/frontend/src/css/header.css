@@ -1,0 +1,15 @@
+/* Style the header */
+#header {
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    background-color: #d2cdcd;
+    padding: 10px;
+    text-align: center;
+}
+
+#header:hover {
+    background-color: #eec6c6;
+}

@@ -1,0 +1,46 @@
+/* Style the form container */
+form {
+    margin-top: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Style each form div to add space between form elements */
+form div {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style labels for better readability */
+label {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Style input fields to ensure they are user-friendly */
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style buttons with a primary color and change on hover */
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Change button background color on hover */
+button:hover {
+    background-color: #45a049;
+}
