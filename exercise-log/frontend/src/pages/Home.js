@@ -1,4 +1,4 @@
-import "../css/form.css";
+import "../css/home.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ExerciseChart from "../components//ExerciseChart";
@@ -13,7 +13,7 @@ const Home = () => {
     const fetchExercises = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/exercises`);
-        console.log("response data 1", response.data);
+        // console.log("response data fetch Home", response.data);
         setExercises(response.data);
       } catch (error) {
         console.error("Error fetching exercises", error);
@@ -36,8 +36,10 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Exercises</h1>
-      <ExerciseChart exerciseData={exercises} />
+      {/* <h1>Exercises</h1> */}
+      <div className="exercise-chart">
+        <ExerciseChart exerciseData={exercises} />
+      </div>
       <ExerciseList
         exercises={exercises}
         setExercises={setExercises}

@@ -49,6 +49,7 @@
 
 .btn {
     padding: 10px 20px;
+    margin: 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -111,4 +112,3 @@
     align-items: center;
     justify-content: center;
 }
-

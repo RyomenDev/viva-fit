@@ -20,7 +20,7 @@ const EditExerciseForm = ({ exercise, onChange, onSubmit, onCancel }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <h2>Edit Exercise</h2>
+        {/* <h2>Edit Exercise</h2> */}
         <div>
           <label htmlFor="edit-name">Exercise Name:</label>
           <input

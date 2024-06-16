@@ -4,7 +4,6 @@ import axios from "axios";
 import EditExerciseForm from "../components//EditExerciseForm";
 
 const ExerciseList = ({ exercises, setExercises, onDelete }) => {
-  const [isEditing, setIsEditing] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(null);
   const [updatedExercise, setUpdatedExercise] = useState({
     name: "",
@@ -47,7 +46,7 @@ const ExerciseList = ({ exercises, setExercises, onDelete }) => {
         `${process.env.REACT_APP_BASE_URL}/exercises/${currentEditId}`,
         updatedExercise
       );
-      console.log("Updated exercise: Frontend", response.data);
+    //   console.log("Updated exercise: Frontend", response.data);
 
       // Update the state directly with the updated exercise
       setExercises((prevExercises) =>
@@ -63,12 +62,10 @@ const ExerciseList = ({ exercises, setExercises, onDelete }) => {
 
   const handleEditClick = (id, exercise) => {
     editExercise(id, exercise);
-    setIsEditing(true);
     setCurrentEditId(id);
   };
 
   const handleCancelEdit = () => {
-    setIsEditing(false);
     setCurrentEditId(null);
   };
 
