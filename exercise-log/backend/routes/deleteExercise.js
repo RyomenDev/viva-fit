@@ -6,9 +6,9 @@ const { dbConnect } = require("../config/Database");
 
 // DELETE an exercise
 router.delete("/exercises/:id", async (req, res) => {
-  console.log("In delete", req.params.id);
+//   console.log("In delete", req.params.id);
   try {
-    console.log(`Deleting exercise with id: ${req.params.id}`);
+    // console.log(`Deleting exercise with id: ${req.params.id}`);
     const db = await dbConnect(); // Connect to MongoDB
 
     // Ensure the exercise ID is a valid ObjectId

@@ -12,41 +12,15 @@ const ExerciseList = ({ exercises, setExercises, onDelete }) => {
     duration: 0,
   });
 
-  const editExercise = (id, updatedExercise) => {
-    setCurrentEditId(id);
-    // setUpdatedExercise(updatedExercise);
-    setUpdatedExercise({ ...updatedExercise });
-  };
-
-  // const handleEditSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log("update Data Frontend:", updatedExercise);
-  //   try {
-  //     const response = await axios.put(
-  //       `${process.env.REACT_APP_BASE_URL}/exercises/${currentEditId}`,
-  //       updatedExercise
-  //     );
-  //     console.log("Updated exercise: Frontend", response.data);
-
-  //     // Fetch the updated list of exercises
-  //     const updatedExercisesResponse = await axios.get(
-  //       `${process.env.REACT_APP_BASE_URL}/exercises`
-  //     );
-  //     setExercises(updatedExercisesResponse.data);
-  //   } catch (error) {
-  //     console.error("Error updating exercise:", error);
-  //   }
-  // };
-
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    console.log("update Data Frontend:", updatedExercise);
+    // console.log("update Data Frontend:", updatedExercise);
     try {
       const response = await axios.put(
         `${process.env.REACT_APP_BASE_URL}/exercises/${currentEditId}`,
         updatedExercise
       );
-    //   console.log("Updated exercise: Frontend", response.data);
+      //   console.log("Updated exercise: Frontend", response.data);
 
       // Update the state directly with the updated exercise
       setExercises((prevExercises) =>
@@ -61,8 +35,8 @@ const ExerciseList = ({ exercises, setExercises, onDelete }) => {
   };
 
   const handleEditClick = (id, exercise) => {
-    editExercise(id, exercise);
     setCurrentEditId(id);
+    setUpdatedExercise({ ...exercise });
   };
 
   const handleCancelEdit = () => {
@@ -76,6 +50,8 @@ const ExerciseList = ({ exercises, setExercises, onDelete }) => {
       <div className="card-grid">
         {exercises.map((exercise) => (
           <div key={exercise._id} className="card">
+            {" "}
+            {/* Ensure the key prop is set to a unique value */}
             {currentEditId === exercise._id ? (
               <div className="edit-form-container">
                 <EditExerciseForm
@@ -122,6 +98,26 @@ const ExerciseList = ({ exercises, setExercises, onDelete }) => {
 };
 
 export default ExerciseList;
+
+// const handleEditSubmit = async (e) => {
+//   e.preventDefault();
+//   console.log("update Data Frontend:", updatedExercise);
+//   try {
+//     const response = await axios.put(
+//       `${process.env.REACT_APP_BASE_URL}/exercises/${currentEditId}`,
+//       updatedExercise
+//     );
+//     console.log("Updated exercise: Frontend", response.data);
+
+//     // Fetch the updated list of exercises
+//     const updatedExercisesResponse = await axios.get(
+//       `${process.env.REACT_APP_BASE_URL}/exercises`
+//     );
+//     setExercises(updatedExercisesResponse.data);
+//   } catch (error) {
+//     console.error("Error updating exercise:", error);
+//   }
+// };
 
 /*
   return (

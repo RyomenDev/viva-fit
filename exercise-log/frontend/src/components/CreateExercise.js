@@ -4,37 +4,36 @@ import "../css/form.css";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const ExerciseCreateForm = () => {
+// const ExerciseCreateForm = ({ addExercises, setAddExercises }) => {
+const ExerciseCreateForm = ({ addExercise }) => {
   const [name, setName] = useState("");
   const [calories, setCalories] = useState("");
   const [date, setDate] = useState("");
   const [duration, setDuration] = useState("");
 
-  const handleSubmit = async (e) => {
-    console.log("in handleSubmit");
-    e.preventDefault();
+  //   const addExercise = (newExercise) => {
+  //     console.log("newExercise", newExercise);
+  //     setAddExercises((prevExercises) => [...prevExercises, newExercise]);
+  //   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     // Create an exercise object with the form data
     const exercise = { name, calories, date, duration };
-
-    console.log(name, calories, date, duration);
-    // Make an API request to create the exercise
-    await axios
-      .post(`${BASE_URL}/exercises`, exercise)
-    //   .post("http://localhost:5000/exercises", exercise)
-      .then((response) => {
-        // Handle the response and update the UI accordingly
-        console.log("response", response.data);
-        //reset the form here
-        // setName("");
-        // setCalories("");
-        // setDate("");
-        // setDuration("");
-      })
-      .catch((error) => {
-        // Handle error scenarios
-        console.error(error);
-      });
+    // console.log(name, calories, date, duration);
+    try {
+      const response = await axios.post(`${BASE_URL}/exercises`, exercise);
+      //   console.log("response got", response.data);
+      // Call the addExercise function with the response data to update the state - rendering in frontend
+      addExercise(response.data.exercise);
+      // Reset the form
+      setName("");
+      setCalories("");
+      setDate("");
+      setDuration("");
+    } catch (error) {
+      console.error("Error adding exercise:", error);
+    }
   };
 
   return (
@@ -91,3 +90,27 @@ const ExerciseCreateForm = () => {
   );
 };
 export default ExerciseCreateForm;
+
+//   const handleSubmit = async (e) => {
+//     // console.log("in handleSubmit");
+//     e.preventDefault();
+//     // Create an exercise object with the form data
+//     const exercise = { name, calories, date, duration };
+//     // Make an API request to create the exercise
+//     await axios
+//       .post(`${BASE_URL}/exercises`, exercise)
+//       //   .post("http://localhost:5000/exercises", exercise)
+//       .then((response) => {
+//         // Handle the response and update the UI accordingly
+//         console.log("response", response.data);
+//         // reset the form here
+//         setName("");
+//         setCalories("");
+//         setDate("");
+//         setDuration("");
+//       })
+//       .catch((error) => {
+//         // Handle error scenarios
+//         console.error(error);
+//       });
+//   };

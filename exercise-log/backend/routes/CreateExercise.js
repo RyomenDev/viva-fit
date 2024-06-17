@@ -8,7 +8,7 @@ const validator = require("validator");
 // Add a new exercise
 // router.post("/exercises", authenticate, async (req, res) => {
 router.post("/exercises", async (req, res) => {
-  console.log("hello in create Exercise");
+  //   console.log("hello in create Exercise");
   try {
     const { name, duration, calories, date } = req.body;
     // ! const userId = req.userId;
@@ -30,8 +30,8 @@ router.post("/exercises", async (req, res) => {
 
     // ! const exercise = new Exercise({ userId, name, duration, calories });
     const exercise = new Exercise({ name, calories, date, duration });
- 
-    console.log(exercise);
+
+    // console.log(exercise);
     // const newExercise = await exercise.save();
     const db = await dbConnect(); // Connect to MongoDB
     const result = await db.collection("exercises").insertOne(exercise);

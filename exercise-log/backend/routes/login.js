@@ -14,6 +14,8 @@ const jwtSecretKey = JWTSECRETKEY;
 
 // Endpoint for user login
 router.post("/login", async (req, res) => {
+    console.log("in backend login");
+    console.log(req.body);
   //   const { username, password, userEmail } = req.body;
   const { password, userEmail } = req.body;
 
@@ -62,6 +64,7 @@ router.post("/login", async (req, res) => {
       res.json({ token });
     } else {
       // Return an error message
+      console.log("invalid");
       res.status(401).json({ error: "Invalid credentials" });
     }
   } catch (error) {

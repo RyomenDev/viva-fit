@@ -13,3 +13,16 @@
 #header:hover {
     background-color: #eec6c6;
 }
+
+.signUp-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signUp-button:hover {
+    background-color: #0056b3;
+}

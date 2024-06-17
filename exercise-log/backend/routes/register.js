@@ -6,8 +6,9 @@ const { dbConnect } = require("../config/Database");
 const validator = require("validator");
 
 router.post("/register", async (req, res) => {
+  console.log("in backend register");
   const { username, password, userEmail } = req.body;
-  //   console.log(username, password, userEmail);
+  console.log(username, password, userEmail);
   // Validate input data
   if (!username || !password || !userEmail) {
     return res
