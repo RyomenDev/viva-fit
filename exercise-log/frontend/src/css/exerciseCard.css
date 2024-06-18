@@ -82,33 +82,3 @@
 .btn-success:hover {
     background-color: #218838;
 }
-
-.form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.form-input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.card.expanded {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* Two columns when expanded */
-    gap: 20px;
-}
-
-.edit-form-container {
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}

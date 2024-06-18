@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   const handleLoginSuccess = (data) => {
@@ -14,25 +15,27 @@ function App() {
     console.log("Logged in successfully!", data);
   };
   return (
-    <div>
-      {/* <Header />
+    <AuthProvider>
+      <div>
+        {/* <Header />
       <Home />
       <Footer /> */}
-      <Router>
-        <div>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="login"
-              element={<Login onLoginSuccess={handleLoginSuccess} />}
-            />
-            <Route path="signup" element={<Signup />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    </div> 
+        <Router>
+          <div id="root">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="login"
+                element={<Login onLoginSuccess={handleLoginSuccess} />}
+              />
+              <Route path="signup" element={<Signup />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </div>
+    </AuthProvider>
   );
 }
 

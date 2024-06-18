@@ -1,3 +1,4 @@
+import "../css/editExerciseForm.css";
 import React from "react";
 
 // Utility function to format a date in YYYY-MM-DD format
@@ -22,7 +23,7 @@ const EditExerciseForm = ({ exercise, onChange, onSubmit, onCancel }) => {
     onSubmit(e);
   };
   return (
-    <div>
+    <div className="edit-form-container">
       <form onSubmit={handleSubmit}>
         {/* <h2>Edit Exercise</h2> */}
         <div>
@@ -67,12 +68,14 @@ const EditExerciseForm = ({ exercise, onChange, onSubmit, onCancel }) => {
             }
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          SAVE
-        </button>
-        <button type="button" className="btn btn-danger" onClick={onCancel}>
-          CANCEL
-        </button>
+        <div className="editCard-buttons">
+          <button type="submit" className="btn btn-primary">
+            SAVE
+          </button>
+          <button type="button" className="btn btn-danger" onClick={onCancel}>
+            CANCEL
+          </button>
+        </div>
       </form>
     </div>
   );

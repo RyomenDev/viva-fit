@@ -1,11 +1,25 @@
-/* login.css */
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    flex-grow: 1;
+    /* Make it take the remaining space */
     background-color: #f4f4f4;
     padding: 20px;
     box-sizing: border-box;
@@ -64,4 +78,19 @@
 
 .login-container button:hover {
     background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .login-container form {
+        padding: 15px;
+    }
+
+    .login-container h2 {
+        font-size: 20px;
+    }
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/exerciseCard.css";
-
+// import "../css/exerciseCard.css";
 import SignUpForm from "./SignUpForm";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -30,7 +29,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <div className="edit-form-container">
+      <div className="sign-up-container">
         <SignUpForm
           onSubmit={handleSubmit}
           username={username}

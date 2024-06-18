@@ -1,54 +1,82 @@
+/* General header styling */
 #header {
+    padding: 15px 20px;
+    background-color: #f5f7fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #d1e0ef;
-    position: relative;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* Header content layout */
 .header-content {
     display: flex;
     align-items: center;
     width: 100%;
+    justify-content: space-between;
 }
 
+/* Left section (Home button) styling */
+.left-section {
+    flex: 1;
+}
+
+/* Title styling */
 .title {
-    flex-grow: 1;
+    flex-grow: 2;
     text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
+/* Button container styling */
 .buttons {
-    position: absolute;
-    right: 20px;
+    flex: 1;
+    text-align: right;
     display: flex;
     gap: 10px;
 }
 
+/* General button styling */
 button {
     padding: 10px 20px;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    min-width: 100px;
+    /* display: inline-block; */
+}
+
+/* Specific button styles */
+.home-button {
+    background-color: #007bff;
+    min-width: 80px;
+    /* Adjusted minimum width */
 }
 
 .login-button {
     background-color: #007bff;
-    color: white;
 }
 
 .signUp-button {
     background-color: #28a745;
-    color: white;
 }
+
 
 .logout-button {
     background-color: #dc3545;
-    color: white;
 }
 
+/* Hover effects */
 #header:hover {
-    background-color: #eec6c6;
+    background-color: #f8eaea;
 }
 
 .signUp-button:hover {
@@ -57,4 +85,31 @@ button {
 
 .login-button:hover {
     background-color: #0056b3;
+}
+
+.home-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left-section,
+    .buttons {
+        flex: unset;
+        width: 100%;
+    }
+
+    .title {
+        margin: 10px 0;
+    }
+
+    .buttons {
+        justify-content: center;
+        margin-top: 10px;
+    }
 }
