@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import EditExerciseForm from "../components//EditExerciseForm";
 
-const ExerciseList = ({ exercises, setExercises, onDelete }) => {
+const ExerciseList = ({ exercises, setExercises, onDelete, userId }) => {
   const [currentEditId, setCurrentEditId] = useState(null);
   const [updatedExercise, setUpdatedExercise] = useState({
     name: "",
@@ -16,9 +16,23 @@ const ExerciseList = ({ exercises, setExercises, onDelete }) => {
     e.preventDefault();
     // console.log("update Data Frontend:", updatedExercise);
     try {
+      // Decode the token and set userId
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
       const response = await axios.put(
         `${process.env.REACT_APP_BASE_URL}/exercises/${currentEditId}`,
-        updatedExercise
+        updatedExercise,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            loggedInUserId: userId,
+          },
+        }
       );
       //   console.log("Updated exercise: Frontend", response.data);
 
@@ -82,7 +96,7 @@ const ExerciseList = ({ exercises, setExercises, onDelete }) => {
                     Edit
                   </button>
                   <button
-                    onClick={() => onDelete(exercise._id)}
+                    onClick={() => onDelete(exercise._id, exercise.userId)}
                     className="btn btn-danger"
                   >
                     Delete

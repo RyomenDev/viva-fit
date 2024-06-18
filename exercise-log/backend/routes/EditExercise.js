@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { ObjectId } = require("mongodb");
 const { dbConnect } = require("../config/Database");
+const { authenticate } = require("../middlewares/Authentication");
 // const Exercise = require("../models/exercise");
 
 // PUT to update an exercise
-router.put("/exercises/:id", async (req, res) => {
+router.put("/exercises/:id", authenticate, async (req, res) => {
   try {
     const db = await dbConnect(); // Connect to MongoDB
 
@@ -14,6 +15,22 @@ router.put("/exercises/:id", async (req, res) => {
     // Ensure exerciseId is a valid ObjectId
     if (!ObjectId.isValid(exerciseId)) {
       return res.status(400).json({ message: "Invalid exercise ID" });
+    }
+
+    // userId of createR
+    // console.log("in backend to edit", req.body.userId);
+    const createUserId = req.body.userId.toString();
+
+    // who want tp edit
+    // console.log("Editor", req.query.loggedInUserId);
+    // console.log("Editor", req.userId);
+    const loggedInUserId = req.userId.toString();
+    // Check if the exercise belongs to the logged-in user
+    if (createUserId !== loggedInUserId) {
+      console.log("Not authorized to Edit this exercise");
+      return res
+        .status(403)
+        .send({ error: "Not authorized to Edit this exercise" });
     }
 
     const updatedExerciseData = {

@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { ObjectId } = require("mongodb");
 const { dbConnect } = require("../config/Database");
+const { authenticate } = require("../middlewares/Authentication");
 // const Exercise = require("../models/exercise");
 
 // DELETE an exercise
-router.delete("/exercises/:id", async (req, res) => {
-//   console.log("In delete", req.params.id);
+router.delete("/exercises/:id", authenticate, async (req, res) => {
+  //   console.log("In delete", req.params.id);
   try {
     // console.log(`Deleting exercise with id: ${req.params.id}`);
     const db = await dbConnect(); // Connect to MongoDB
@@ -18,6 +19,20 @@ router.delete("/exercises/:id", async (req, res) => {
     }
 
     const exerciseId = new ObjectId(req.params.id);
+
+    // WHO IS TRYING TO DELETE
+    console.log("exerciseUserId", req.userId);
+
+    // USER_ID OF THE EXERCISE CREATOR
+    console.log("exerciseCreate.user", req.query.createUserId);
+    const exerciseCreateUser = req.query.createUserId;
+
+    // Check if the exercise belongs to the logged-in user
+    if (exerciseCreateUser !== req.userId) {
+      return res
+        .status(403)
+        .send({ error: "Not authorized to delete this exercise" });
+    }
 
     // Delete the exercise
     const result = await db

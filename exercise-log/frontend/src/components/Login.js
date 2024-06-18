@@ -16,6 +16,8 @@ const LoginForm = ({ onLoginSuccess }) => {
         password,
       });
       //   console.log("Login successful", response.data);
+      // Save JWT token to local storage
+      localStorage.setItem("token", response.data.token);
       onLoginSuccess(response.data); // Handle login success (e.g., save token, redirect)
     } catch (error) {
       console.error("Login error:", error);

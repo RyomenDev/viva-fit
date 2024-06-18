@@ -17,9 +17,13 @@ const EditExerciseForm = ({ exercise, onChange, onSubmit, onCancel }) => {
   const handleChange = (e) => {
     onChange({ ...exercise, [e.target.name]: e.target.value });
   };
+
+  const handleSubmit = (e) => {
+    onSubmit(e);
+  };
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         {/* <h2>Edit Exercise</h2> */}
         <div>
           <label htmlFor="edit-name">Exercise Name:</label>

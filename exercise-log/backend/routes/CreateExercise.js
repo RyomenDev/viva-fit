@@ -6,12 +6,12 @@ const { dbConnect } = require("../config/Database");
 const validator = require("validator");
 
 // Add a new exercise
-// router.post("/exercises", authenticate, async (req, res) => {
-router.post("/exercises", async (req, res) => {
+router.post("/exercises", authenticate, async (req, res) => {
+// router.post("/exercises", async (req, res) => {
   //   console.log("hello in create Exercise");
   try {
     const { name, duration, calories, date } = req.body;
-    // ! const userId = req.userId;
+    const userId = req.userId;
 
     // Validate the name field
     // if (!validator.isLength(name, { min: 2, max: 50 })) {
@@ -28,8 +28,8 @@ router.post("/exercises", async (req, res) => {
     //   return res.status(400).json({ error: "Invalid calories value" });
     // }
 
-    // ! const exercise = new Exercise({ userId, name, duration, calories });
-    const exercise = new Exercise({ name, calories, date, duration });
+    // const exercise = new Exercise({ name, calories, date, duration });
+    const exercise = new Exercise({ userId, name, calories, date, duration });
 
     // console.log(exercise);
     // const newExercise = await exercise.save();

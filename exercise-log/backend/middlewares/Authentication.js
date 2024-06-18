@@ -5,6 +5,7 @@ const { JWTSECRETKEY } = process.env;
 const jwtSecretKey = JWTSECRETKEY;
 // Authentication middleware
 function authenticate(req, res, next) {
+  console.log("authenticate page");
   const token = req.headers.authorization?.split(" ")[1];
 
   if (token) {
@@ -13,8 +14,9 @@ function authenticate(req, res, next) {
       // req.user = decoded.userId;
       const { userId, userEmail } = jwt.verify(token, jwtSecretKey);
       req.userId = userId;
-        console.log("userId", userId);
-        console.log("userEmail", userEmail);
+
+      console.log("userId", userId);
+      console.log("userEmail", userEmail);
       next();
     } catch (error) {
       console.error("Error verifying token:", error.message);

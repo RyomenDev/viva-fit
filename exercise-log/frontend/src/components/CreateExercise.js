@@ -22,8 +22,20 @@ const ExerciseCreateForm = ({ addExercise }) => {
     const exercise = { name, calories, date, duration };
     // console.log(name, calories, date, duration);
     try {
-      const response = await axios.post(`${BASE_URL}/exercises`, exercise);
-      //   console.log("response got", response.data);
+      // Retrieve the token from local storage
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      //   const response = await axios.post(`${BASE_URL}/exercises`, exercise);
+      const response = await axios.post(`${BASE_URL}/exercises`, exercise, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // console.log("response got", response.data);
       // Call the addExercise function with the response data to update the state - rendering in frontend
       addExercise(response.data.exercise);
       // Reset the form
